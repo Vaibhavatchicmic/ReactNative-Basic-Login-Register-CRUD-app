@@ -8,9 +8,12 @@ const Home = () => {
   return (
     <View>
       <Text>Home</Text>
-      <FlatList data={item} renderItem={()=>{
-        
-      }}/>
+      <FlatList
+        data={items}
+        renderItem={({item}) => {
+          <View>{item.name}</View>;
+        }}
+      />
     </View>
   );
 };

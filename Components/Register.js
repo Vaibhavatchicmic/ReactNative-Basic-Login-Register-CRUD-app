@@ -6,27 +6,41 @@ import Form from './Form';
 
 export function Register({setIsLogin, navigation}) {
   const [modal, setModal] = useState({isVisible: false, text: 'dfasdf'});
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  const [inputData, setInputData] = useState({
+    Email: '',
+    Password: '',
+    Username: '',
+  });
   const [status, setStatus] = useState('input');
 
+  function handleInputChange(value, name) {
+    // console.log(inputData);
+
+    setInputData({
+      ...inputData,
+      [name]: value,
+    });
+  }
+
   function handleRegister() {
-    if (email === '') {
+    if (inputData.Email === '') {
       setModal({isVisible: true, text: "Email can't be empty"});
       return;
-    } else if (username === '') {
+    } else if (inputData.Username === '') {
       setModal({isVisible: true, text: "Username can't be empty"});
       return;
-    } else if (password === '') {
+    } else if (inputData.Password === '') {
       setModal({isVisible: true, text: "Password can't be empty"});
       return;
     }
 
     const body = {
-      name: username,
-      uid: email,
-      password: password,
+      name: inputData.Username,
+      uid: inputData.Email,
+      password: inputData.Password,
     };
     CallApi('users', 'POST', body).then(r => {
       if (r.message) {
@@ -47,20 +61,20 @@ export function Register({setIsLogin, navigation}) {
     inputs: [
       {
         name: 'Email',
-        state: email,
-        InputHandler: setEmail,
+        state: inputData.Email,
+        InputHandler: handleInputChange,
         id: 1,
       },
       {
         name: 'Username',
-        state: username,
-        InputHandler: setUsername,
+        state: inputData.Username,
+        InputHandler: handleInputChange,
         id: 2,
       },
       {
         name: 'Password',
-        state: password,
-        InputHandler: setPassword,
+        state: inputData.Password,
+        InputHandler: handleInputChange,
         id: 3,
       },
     ],

@@ -6,24 +6,34 @@ import Form from './Form';
 
 export function Login({setIsLogin, navigation}) {
   const [modal, setModal] = useState({isVisible: false, text: 'dfasdf'});
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const [inputData, setInputData] = useState({email: '', password: ''});
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  const [inputData, setInputData] = useState({Email: '', Password: ''});
   const [status, setStatus] = useState('Input');
 
+  function handleInputChange(value, name) {
+    // console.log(inputData);
+
+    setInputData({
+      ...inputData,
+      [name]: value,
+    });
+    console.log(inputData);
+  }
+
   function handleLogin() {
-    if (email === '') {
+    if (inputData.Email === '') {
       setModal({isVisible: true, text: "Email can't be empty"});
       return;
     }
-    if (password === '') {
+    if (inputData.Password === '') {
       setModal({isVisible: true, text: "Password can't be empty"});
       return;
     }
 
     const body = {
-      uid: email,
-      password: password,
+      uid: inputData.Email,
+      password: inputData.Password,
     };
 
     CallApi('users/login', 'POST', body).then(r => {
@@ -45,14 +55,14 @@ export function Login({setIsLogin, navigation}) {
     inputs: [
       {
         name: 'Email',
-        state: email,
-        InputHandler: setEmail,
+        state: inputData.Email,
+        InputHandler: handleInputChange,
         id: 1,
       },
       {
         name: 'Password',
-        state: password,
-        InputHandler: setPassword,
+        state: inputData.Password,
+        InputHandler: handleInputChange,
         id: 2,
       },
     ],
