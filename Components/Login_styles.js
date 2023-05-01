@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   flex_con: {
     flex: 1,
+    height: '100%',
     justifyContent: 'center',
     alignContent: 'center',
   },
@@ -70,6 +71,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
+  },
+  loader: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    height: '100%',
+    width: '100%',
   },
 });
 export default styles;

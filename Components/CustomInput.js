@@ -1,4 +1,4 @@
-import {View, Text, TextInput, id} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 import React from 'react';
 import styles from './Login_styles';
 
@@ -9,7 +9,7 @@ const CustomInput = ({
   isSecureEntry = false,
 }) => {
   return (
-    <View id={id}>
+    <View>
       <Text style={styles.text}>{name}</Text>
       <TextInput
         style={styles.input}

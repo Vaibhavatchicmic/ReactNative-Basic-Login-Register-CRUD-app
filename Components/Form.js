@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Pressable, Text} from 'react-native';
+import {View, Pressable, Text, ActivityIndicator} from 'react-native';
 import styles from './Login_styles';
 import CustomInput from './CustomInput';
 import MyModal from './MyModal';
-export default function Form({form_data, modal, setModal}) {
+export default function Form({form_data, modal, setModal, showLoader = false}) {
   return (
     <View style={styles.flex_con}>
       <Text style={styles.heading}>{form_data.heading}</Text>
@@ -12,7 +12,7 @@ export default function Form({form_data, modal, setModal}) {
           <View>
             {form_data.inputs.map(input => (
               <CustomInput
-                id={input.id}
+                key={input.id}
                 state={input.state}
                 name={input.name}
                 InputHandler={input.InputHandler}
@@ -35,6 +35,13 @@ export default function Form({form_data, modal, setModal}) {
         </View>
       </View>
       <MyModal modal={modal} setModal={setModal} />
+      {showLoader && (
+        <ActivityIndicator
+          style={[styles.loader]}
+          size={'large'}
+          animating={true}
+        />
+      )}
     </View>
   );
 }
