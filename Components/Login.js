@@ -11,13 +11,6 @@ export function Login({setIsLogin, navigation}) {
   // const [inputData, setInputData] = useState({email: '', password: ''});
   const [status, setStatus] = useState('Input');
 
-  function handlePasswordInput(text) {
-    setPassword(text);
-  }
-  function handleEmailInput(text) {
-    setEmail(text);
-  }
-
   function handleLogin() {
     if (email === '') {
       setModal({isVisible: true, text: "Email can't be empty"});
@@ -53,13 +46,13 @@ export function Login({setIsLogin, navigation}) {
       {
         name: 'Email',
         state: email,
-        InputHandler: handleEmailInput,
+        InputHandler: setEmail,
         id: 1,
       },
       {
         name: 'Password',
         state: password,
-        InputHandler: handlePasswordInput,
+        InputHandler: setPassword,
         id: 2,
       },
     ],

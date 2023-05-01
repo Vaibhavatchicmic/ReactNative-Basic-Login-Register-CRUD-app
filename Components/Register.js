@@ -11,16 +11,6 @@ export function Register({setIsLogin, navigation}) {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('input');
 
-  function handleUsernameInput(text) {
-    setUsername(text);
-  }
-  function handlePasswordInput(text) {
-    setPassword(text);
-  }
-  function handleEmailInput(text) {
-    setEmail(text);
-  }
-
   function handleRegister() {
     if (email === '') {
       setModal({isVisible: true, text: "Email can't be empty"});
@@ -58,19 +48,19 @@ export function Register({setIsLogin, navigation}) {
       {
         name: 'Email',
         state: email,
-        InputHandler: handleEmailInput,
+        InputHandler: setEmail,
         id: 1,
       },
       {
         name: 'Username',
         state: username,
-        InputHandler: handleUsernameInput,
+        InputHandler: setUsername,
         id: 2,
       },
       {
         name: 'Password',
         state: password,
-        InputHandler: handlePasswordInput,
+        InputHandler: setPassword,
         id: 3,
       },
     ],
