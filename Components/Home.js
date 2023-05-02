@@ -1,5 +1,6 @@
+import {useFocusEffect} from '@react-navigation/native';
 import {View, Text, Pressable, Alert, ActivityIndicator} from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {FlatList, TextInput} from 'react-native-gesture-handler';
 import CallApi, {getToken} from '../Utility/network';
 import styles from './Home_styles';
@@ -12,25 +13,28 @@ function Home({navigation}) {
   const [crudInput, setCrudInput] = useState('');
   const TOKEN = useRef('');
   const [items, setItems] = useState([]);
-  useEffect(() => {
-    // CallApi('projects', 'GET', null, token);
-    getToken().then(token => {
-      if (!token) {
-        navigation.navigate('Login');
-        return;
-      }
-      TOKEN.current = token;
-      // Alert.alert(`first token: ${TOKEN}`);
-      console.log('token in Home.js :', token);
-      // CallApi('projects', 'GET', null, token).then(r => {
-      //   // Alert.alert(JSON.stringify(r));
-      //   console.log(r);
-      //   setItems(r);
-      //   setStatus('Loaded');
-      // });
-      handleLoad();
-    });
-  }, [navigation]);
+
+  useFocusEffect(
+    useCallback(() => {
+      // CallApi('projects', 'GET', null, token);
+      getToken().then(token => {
+        if (!token) {
+          navigation.navigate('Login');
+          return;
+        }
+        TOKEN.current = token;
+        // Alert.alert(`first token: ${TOKEN}`);
+        console.log('token in Home.js :', token);
+        // CallApi('projects', 'GET', null, token).then(r => {
+        //   // Alert.alert(JSON.stringify(r));
+        //   console.log(r);
+        //   setItems(r);
+        //   setStatus('Loaded');
+        // });
+        handleLoad();
+      });
+    }, []),
+  );
 
   console.log('crud input :', crudInput);
   console.log('status :', status);
