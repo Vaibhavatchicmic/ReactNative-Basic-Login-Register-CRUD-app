@@ -66,7 +66,7 @@ const CustomFormInput = ({
         value={state}
         placeholder={`Enter your ${name}`}
         onChangeText={val => {
-          console.log('changing text', val, name);
+          // console.log('changing text', val, name);
           InputHandler(val, name);
         }}
         secureTextEntry={isSecureEntry}

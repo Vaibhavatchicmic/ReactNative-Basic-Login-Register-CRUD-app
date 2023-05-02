@@ -3,8 +3,13 @@ const styles = StyleSheet.create({
   heading: {
     backgroundColor: 'skyblue',
     color: 'white',
-    // textAlign: 'center',
     paddingHorizontal: 20,
+    paddingVertical: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  heading_text: {
     fontSize: 30,
   },
   addbtn: {

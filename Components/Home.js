@@ -170,8 +170,13 @@ function Home({navigation}) {
 
   return (
     <View style={{flex: 1}}>
-      <Text style={styles.heading}>Home</Text>
-      {/* <Delete_context.Provider value={delete_in_crud}> */}
+      <View style={styles.heading}>
+        <Text style={styles.heading_text}>Home</Text>
+        <Pressable onPress={handleLoad}>
+          <Text>Reload</Text>
+        </Pressable>
+      </View>
+
       <FlatList
         data={items}
         renderItem={({item}) => {
