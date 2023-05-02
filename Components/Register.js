@@ -51,6 +51,7 @@ export function Register({setIsLogin, navigation}) {
         setStatus('Loaded');
         // Alert.alert(r.token);
         setToken(r.token);
+        navigation.navigate('Home');
       }
     });
     setStatus('Loading');

@@ -13,6 +13,7 @@ export function Login({setIsLogin, navigation}) {
 
   function handleInputChange(value, name) {
     // console.log(inputData);
+    // console.log('setting input', value, name);
 
     setInputData({
       ...inputData,
@@ -44,6 +45,7 @@ export function Login({setIsLogin, navigation}) {
         setStatus('Loaded');
         // Alert.alert(r.token);
         setToken(r.token);
+        navigation.navigate('Home');
         // const token = await getToken();
         // console.log('token in login.js :', token);
         // getToken().then(res => console.log(res));

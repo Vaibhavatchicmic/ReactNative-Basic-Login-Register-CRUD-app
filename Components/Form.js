@@ -1,7 +1,12 @@
 import React from 'react';
-import {View, Pressable, Text, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Pressable,
+  Text,
+  ActivityIndicator,
+  TextInput,
+} from 'react-native';
 import styles from './Login_styles';
-import CustomInput from './CustomInput';
 import MyModal from './MyModal';
 export default function Form({form_data, modal, setModal, showLoader = false}) {
   return (
@@ -11,11 +16,11 @@ export default function Form({form_data, modal, setModal, showLoader = false}) {
         <View style={styles.box}>
           <View>
             {form_data.inputs.map(input => (
-              <CustomInput
+              <CustomFormInput
                 key={input.id}
                 state={input.state}
                 name={input.name}
-                InputHandler={() => input.InputHandler(input.name, input.state)}
+                InputHandler={input.InputHandler}
                 isSecureEntry={input.name === 'Password'}
               />
             ))}
@@ -45,3 +50,27 @@ export default function Form({form_data, modal, setModal, showLoader = false}) {
     </View>
   );
 }
+
+const CustomFormInput = ({
+  state = '',
+  name = '',
+  InputHandler = () => {},
+  isSecureEntry = false,
+}) => {
+  return (
+    <View>
+      <Text style={styles.text}>{name}</Text>
+      <TextInput
+        name={name}
+        style={styles.input}
+        value={state}
+        placeholder={`Enter your ${name}`}
+        onChangeText={val => {
+          console.log('changing text', val, name);
+          InputHandler(val, name);
+        }}
+        secureTextEntry={isSecureEntry}
+      />
+    </View>
+  );
+};
