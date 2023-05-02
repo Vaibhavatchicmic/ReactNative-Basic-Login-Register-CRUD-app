@@ -15,7 +15,7 @@ export default function Form({form_data, modal, setModal, showLoader = false}) {
                 key={input.id}
                 state={input.state}
                 name={input.name}
-                InputHandler={input.InputHandler}
+                InputHandler={() => input.InputHandler(input.name, input.state)}
                 isSecureEntry={input.name === 'Password'}
               />
             ))}

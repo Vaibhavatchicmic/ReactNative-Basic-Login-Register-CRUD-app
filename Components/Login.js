@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert} from 'react-native';
+
 import CallApi, {setToken} from '../Utility/network';
 
 import Form from './Form';
@@ -18,7 +18,6 @@ export function Login({setIsLogin, navigation}) {
       ...inputData,
       [name]: value,
     });
-    console.log(inputData);
   }
 
   function handleLogin() {
@@ -36,7 +35,7 @@ export function Login({setIsLogin, navigation}) {
       password: inputData.Password,
     };
 
-    CallApi('users/login', 'POST', body).then(r => {
+    CallApi('users/login', 'POST', body).then(async r => {
       if (r.message) {
         setModal({isVisible: true, text: r.message});
         setStatus('Input');
@@ -45,6 +44,9 @@ export function Login({setIsLogin, navigation}) {
         setStatus('Loaded');
         // Alert.alert(r.token);
         setToken(r.token);
+        // const token = await getToken();
+        // console.log('token in login.js :', token);
+        // getToken().then(res => console.log(res));
       }
     });
     setStatus('Loading');

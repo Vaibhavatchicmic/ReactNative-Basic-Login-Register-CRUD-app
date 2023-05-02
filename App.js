@@ -8,13 +8,13 @@ import Home from './Components/Home';
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   // return <>{!isLogin && <Login setIsLogin={setIsLogin} />}</>;
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={Home} /> */}
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>

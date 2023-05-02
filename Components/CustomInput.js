@@ -2,19 +2,19 @@ import {View, Text, TextInput} from 'react-native';
 import React from 'react';
 import styles from './Login_styles';
 
-function handleInputChange(value, name, inputData, setInputData) {
-  // console.log(inputData);
+// function handleInputChange(value, name, inputData, setInputData) {
+//   // console.log(inputData);
 
-  setInputData({
-    ...inputData,
-    [name]: value,
-  });
-}
+//   setInputData({
+//     ...inputData,
+//     [name]: value,
+//   });
+// }
 
 const CustomInput = ({
   state = '',
   name = '',
-  InputHandler = () => {},
+  setCrudInput = () => {},
   isSecureEntry = false,
 }) => {
   return (
@@ -25,7 +25,7 @@ const CustomInput = ({
         style={styles.input}
         value={state}
         placeholder={`Enter your ${name}`}
-        onChangeText={val => InputHandler(val, name)}
+        onChangeText={setCrudInput}
         secureTextEntry={isSecureEntry}
       />
     </View>

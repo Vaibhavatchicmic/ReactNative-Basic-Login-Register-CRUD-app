@@ -34,12 +34,15 @@ function CallApi(endpoint, method = 'GET', body = null, token = null) {
 }
 
 async function setToken(token) {
+  console.log('saving token :', token);
   return EncryptedStorage.setItem('token', token)
     .then(() => 'success')
     .catch(e => 'error');
 }
 async function getToken() {
-  return EncryptedStorage.getItem('token');
+  const token = await EncryptedStorage.getItem('token');
+  console.log('retreiving token :', token);
+  return token;
 }
 export default CallApi;
 export {setToken, getToken};
